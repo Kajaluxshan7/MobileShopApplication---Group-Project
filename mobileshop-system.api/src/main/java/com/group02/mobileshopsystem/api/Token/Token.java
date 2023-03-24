@@ -27,7 +27,6 @@ public class Token {
   public TokenType tokenType = TokenType.BEARER;
 
   public boolean revoked;
-
   public boolean expired;
   public LocalDateTime confirmedAt;
   public LocalDateTime expiredAt;

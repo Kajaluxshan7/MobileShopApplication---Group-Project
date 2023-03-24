@@ -27,9 +27,9 @@ import java.util.List;
   private String lastname;
   private String email;
   private String password;
-
   private boolean verified;
-
+  @Enumerated(EnumType.STRING)
+  private UserRole userRole;
   @OneToMany(mappedBy = "user")
   private List<Token> tokens;
 
@@ -47,7 +47,6 @@ import java.util.List;
   public String getUsername() {
     return email;
   }
-
 
   @Override
   public boolean isAccountNonExpired() {

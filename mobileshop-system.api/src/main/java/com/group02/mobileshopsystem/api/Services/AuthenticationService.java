@@ -1,7 +1,9 @@
 package com.group02.mobileshopsystem.api.Services;
 
 import com.group02.mobileshopsystem.api.Email.EmailSender;
+import com.group02.mobileshopsystem.api.Email.EmailValidator;
 import com.group02.mobileshopsystem.api.Model.User;
+import com.group02.mobileshopsystem.api.Model.UserRole;
 import com.group02.mobileshopsystem.api.Payload.Request.AuthenticationRequest;
 import com.group02.mobileshopsystem.api.Payload.Request.RegisterRequest;
 import com.group02.mobileshopsystem.api.Payload.Response.AuthenticationResponse;
@@ -26,6 +28,8 @@ public class AuthenticationService {
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
+  private final EmailValidator emailValidator;
+
   private final EmailSender emailSender;
 
 
@@ -35,7 +39,15 @@ public class AuthenticationService {
         .lastname(request.getLastname())
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword()))
+        .userRole(UserRole.USER)
         .build();
+
+    boolean isValidEmail = emailValidator.
+            test(request.getEmail());
+    if (!isValidEmail) {
+      throw new IllegalStateException("Email is not valid");
+    }
+
     var savedUser = userRepository.save(user);
     var jwtToken = jwtService.generateToken(user);
     saveUserToken(savedUser, jwtToken);
@@ -106,7 +118,7 @@ public class AuthenticationService {
     tokenRepository.updateConfirmedAt(token,LocalDateTime.now());
     userRepository.verifyUser(
             confirmationToken.getUser().getEmail());
-    return "confirmed";
+    return "Verified";
   }
 
   private String buildEmail(String name, String link) {
