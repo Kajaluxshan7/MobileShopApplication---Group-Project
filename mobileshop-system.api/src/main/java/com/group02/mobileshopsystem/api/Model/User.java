@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "user",uniqueConstraints = {@UniqueConstraint(name = "email",columnNames ={"email"} )})
         public class User implements UserDetails {
 
   @Id
@@ -27,6 +27,8 @@ import java.util.List;
   private String lastname;
   private String email;
   private String password;
+
+  private boolean verified;
 
   @OneToMany(mappedBy = "user")
   private List<Token> tokens;
@@ -45,6 +47,7 @@ import java.util.List;
   public String getUsername() {
     return email;
   }
+
 
   @Override
   public boolean isAccountNonExpired() {
