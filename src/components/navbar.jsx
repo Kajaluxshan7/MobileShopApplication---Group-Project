@@ -4,13 +4,16 @@ import { ShoppingCart } from "phosphor-react";
 import { Heart} from "phosphor-react";
 import { MagnifyingGlass} from "phosphor-react";
 import "./navbar.css";
+import logo1 from "./logosvg.svg";
 
 
 export const Navbar = () => {
     return (
     <div className="navbar">
-
-        <Link></Link>
+        <div className="logo">
+        <Link> <img src={logo1} alt="" /> </Link>
+        </div>
+        
 
 
     <div className="links">
