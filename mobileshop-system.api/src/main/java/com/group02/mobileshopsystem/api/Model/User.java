@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "user",uniqueConstraints = {@UniqueConstraint(name = "email",columnNames ={"email"} )})
         public class User implements UserDetails {
 
   @Id
@@ -27,7 +27,9 @@ import java.util.List;
   private String lastname;
   private String email;
   private String password;
-
+  private boolean verified;
+  @Enumerated(EnumType.STRING)
+  private UserRole userRole;
   @OneToMany(mappedBy = "user")
   private List<Token> tokens;
 
