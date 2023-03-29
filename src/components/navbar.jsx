@@ -4,7 +4,7 @@ import { ShoppingCart } from "phosphor-react";
 import { Heart} from "phosphor-react";
 import { MagnifyingGlass} from "phosphor-react";
 import "./navbar.css";
-import logo1 from "./logosvg.svg";
+import logo1 from "./logo.jpg";
 
 
 export const Navbar = () => {
