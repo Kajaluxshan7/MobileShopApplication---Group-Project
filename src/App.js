@@ -1,28 +1,29 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/navbar";
-import { Shop } from "./pages/shop/shop";
-import { Contact } from "./pages/contact";
-import { Cart } from "./pages/cart/cart";
-import { ShopContextProvider } from "./context/shop-context";
-import Footer from "./components/footer/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.scss";
+
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Home from "./components/Home/Home";
+import Category from "./components/Category/Category";
+import SingleProduct from "./components/SingleProduct/SingleProduct";
+import Newsletter from "./components/Footer/Newsletter/Newsletter";
+import AppContext from "./utils/context";
 
 function App() {
-  return (
-    <div className="App">
-      <ShopContextProvider>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Shop />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-          <Footer/>
-        </Router>
-      </ShopContextProvider>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <AppContext>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/category/:id" element={<Category />} />
+                    <Route path="/product/:id" element={<SingleProduct />} />
+                </Routes>
+                <Newsletter />
+                <Footer />
+            </AppContext>
+        </BrowserRouter>
+    );
 }
 
 export default App;
