@@ -38,7 +38,9 @@ public class AuthenticationService {
         .firstname(request.getFirstname())
         .lastname(request.getLastname())
         .email(request.getEmail())
-        .password(passwordEncoder.encode(request.getPassword()))
+        .password(passwordEncoder.encode(request.getPassword())).mobileNo(request.getMobileNo())
+        .address(request.getAddress())
+        .address(request.getAddress())
         .userRole(UserRole.USER)
         .build();
 
@@ -83,7 +85,7 @@ public class AuthenticationService {
         .token(jwtToken)
         .tokenType(TokenType.BEARER)
         .expired(false)
-        .revoked(false).expiredAt(LocalDateTime.now().plusMinutes(16))
+        .revoked(false).expiredAt(LocalDateTime.now().plusHours(12))
         .build();
     tokenRepository.save(token);
   }

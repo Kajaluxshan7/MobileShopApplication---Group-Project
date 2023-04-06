@@ -29,20 +29,25 @@ import java.util.List;
   private String lastname;
   private String email;
   private String password;
+  private int mobileNo;
+  private String address;
   private boolean verified;
   @Enumerated(EnumType.STRING)
   private UserRole userRole;
   @OneToMany(mappedBy = "user")
   private List<Token> tokens;
 
-  public User(String firstname, String lastname, String email, String password, boolean verified, UserRole userRole, List<Token> tokens) {
+  public User(String firstname, String lastname, String email, String password, int mobileNo,String address, boolean verified, UserRole userRole, List<Token> tokens) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
     this.password = password;
+    this.mobileNo = mobileNo;
+    this.address = address;
     this.verified = verified;
     this.userRole = userRole;
     this.tokens = tokens;
+
   }
 
   @Override

@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Products, Long> {
-	@Query("Select product FROM Products product WHERE product.branId=:brand_id")
-	List<Products> getByCategoryId(@Param("brand_id")String brand_id);
+	@Query("Select product FROM Products product WHERE product.brand_id=:brandId")
+	List<Products> getByCategoryId(@Param("brandId")String brand_id);
 }
