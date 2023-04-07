@@ -43,9 +43,40 @@ public class AuthenticationService {
         .email(request.getEmail())
         .password(passwordEncoder.encode(request.getPassword())).mobileNo(request.getMobileNo())
         .address(request.getAddress())
-        .address(request.getAddress())
         .userRole(UserRole.USER)
+        .verified(false)
         .build();
+
+    boolean isValidEmail = emailValidator.
+            test(request.getEmail());
+    if (!isValidEmail) {
+      throw new IllegalStateException("Email is not valid");
+    }
+    var savedUser = userRepository.save(user);
+    var jwtToken = jwtService.generateToken(user);
+    saveUserToken(savedUser, jwtToken);
+    String link = "http://localhost:8080/auth/confirm?token=" + jwtToken;
+    emailSender.send(
+            request.getEmail(),
+            buildEmail(request.getFirstname(), link));
+    return "Verify your Email";
+  }
+
+  public String registerAdmin(RegisterRequest request) {
+    boolean userExists = userRepository.existsByEmail(request.getEmail());
+
+    if (userRepository.existsByEmail(request.getEmail())) {
+      throw new RuntimeException("User already exists.");
+    }
+    var user = User.builder()
+            .firstname(request.getFirstname())
+            .lastname(request.getLastname())
+            .email(request.getEmail())
+            .password(passwordEncoder.encode(request.getPassword())).mobileNo(request.getMobileNo())
+            .address(request.getAddress())
+            .userRole(UserRole.ADMIN)
+            .verified(false)
+            .build();
 
     boolean isValidEmail = emailValidator.
             test(request.getEmail());
@@ -78,6 +109,7 @@ public class AuthenticationService {
     saveUserToken(user, jwtToken);
     return AuthenticationResponse.builder()
         .token(jwtToken)
+            .message("Logged in Successfully")
         .build();
   }
   private void saveUserToken(User user, String jwtToken) {
@@ -86,7 +118,7 @@ public class AuthenticationService {
         .token(jwtToken)
         .tokenType(TokenType.BEARER)
         .expired(false)
-        .revoked(false).expiredAt(LocalDateTime.now().plusHours(12))
+        .revoked(false).expiredAt(LocalDateTime.now().plusDays(1))
         .build();
     tokenRepository.save(token);
   }

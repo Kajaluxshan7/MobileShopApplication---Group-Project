@@ -2,6 +2,7 @@ package com.group02.mobileshopsystem.api.Controller;
 
 import com.group02.mobileshopsystem.api.Model.ProductBrand;
 import com.group02.mobileshopsystem.api.Model.Products;
+import com.group02.mobileshopsystem.api.Services.BrandService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +20,8 @@ import java.util.List;
 public class ProductController {
 	@Autowired
 	com.group02.mobileshopsystem.api.Services.ProductServices productServices;
+	@Autowired
+	BrandService brandService;
 	@RequestMapping("getAll")
 	public List<Products> getAllProducts(){
 		return productServices.getAllProducts();
@@ -30,11 +34,6 @@ public class ProductController {
 	public List<Products> getProductsByBrand(@RequestBody HashMap<String,String> request){
 		String brand_id = request.get("brand_id");
 		return productServices.getProductsByBrand(Long.valueOf(brand_id));
-	}
-	@GetMapping( value = "/getimage/{img_name}",produces = MediaType.IMAGE_JPEG_VALUE)
-	public @ResponseBody byte[] getImageWithMediaType(@PathVariable("img_name") String img_name) throws IOException {
-	    InputStream in = getClass().getResourceAsStream("/images/"+img_name);
-	    return IOUtils.toByteArray(in);
 	}
 	@PostMapping("/add")
 	public ResponseEntity<Products> addProduct(@RequestBody Products product , @RequestParam long brandId) {
@@ -63,7 +62,11 @@ public class ProductController {
 		return ResponseEntity.ok(products);
 	}
 	@GetMapping("/search/brand")
-	public ResponseEntity<List<Products>> searchProductsByBrand(@RequestParam Long brandId) {
+	public ResponseEntity<List<Products>> searchProductsByBrand(@RequestParam String brandName) {
+		Long brandId=brandService.getIdByName(brandName);
+		if(brandId==null){
+			return ResponseEntity.ok(new ArrayList<Products>());
+		}
 		List<Products> products = productServices.searchProductsByBrand(brandId);
 		if (products.isEmpty()) {
 			return ResponseEntity.notFound().build();

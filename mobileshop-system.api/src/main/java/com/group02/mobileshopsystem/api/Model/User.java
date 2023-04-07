@@ -36,7 +36,6 @@ import java.util.List;
   private UserRole userRole;
   @OneToMany(mappedBy = "user")
   private List<Token> tokens;
-
   public User(String firstname, String lastname, String email, String password, int mobileNo,String address, boolean verified, UserRole userRole, List<Token> tokens) {
     this.firstname = firstname;
     this.lastname = lastname;
@@ -54,6 +53,38 @@ import java.util.List;
   public Collection<? extends GrantedAuthority> getAuthorities() {
     SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRole.name());
     return Collections.singleton(authority);
+  }
+
+  public String getFirstname() {
+    return firstname;
+  }
+
+  public String getLastname() {
+    return lastname;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public int getMobileNo() {
+    return mobileNo;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public boolean isVerified() {
+    return verified;
+  }
+
+  public UserRole getUserRole() {
+    return userRole;
+  }
+
+  public List<Token> getTokens() {
+    return tokens;
   }
 
   @Override
