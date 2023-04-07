@@ -31,10 +31,12 @@ public class CartServiceImpl implements CartService {
 			obj.setUser_id(userId);
 			Products product = productServices.getProductsById(productId);
 			obj.setProduct(product);
-			//haven't completed yet
-			obj.setPrice(price);
-			addToCartRepository.save(obj);
-			return this.getCartByUserId(userId);	
+			if (product.getInStock()) {
+				obj.setPrice(price);
+				addToCartRepository.save(obj);
+				return this.getCartByUserId(userId);
+			}
+			else return null;
 		}catch(Exception e) {
 			e.printStackTrace();
 			logger.error(""+e.getMessage());

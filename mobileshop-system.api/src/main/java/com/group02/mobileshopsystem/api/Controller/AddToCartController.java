@@ -15,12 +15,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/addtocart")
-public class AddtoCartController {
+public class AddToCartController {
 	
 	@Autowired
 	CartService cartService;
-	@RequestMapping("addproduct")
-  	public ResponseEntity<?> addProductstoCart(@RequestBody HashMap<String,String> addCartRequest) {
+	@RequestMapping("/addproduct")
+  	public ResponseEntity<?> addProductsToCart(@RequestBody HashMap<String,String> addCartRequest) {
 		try {
 			String keys[] = {"productId","userId","quantity","price"};
 			if(ShoppingConfiguration.validationWithHashMap(keys, addCartRequest)) {
@@ -39,7 +39,7 @@ public class AddtoCartController {
 		
    }
 	
-	@RequestMapping("updateQuantityInCart")
+	@RequestMapping("/updateQuantityInCart")
   	public ResponseEntity<?> updateQuantityInCart(@RequestBody HashMap<String,String> addCartRequest) {
 		try {
 			String keys[] = {"cartId","userId","quantity","price"};

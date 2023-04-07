@@ -3,7 +3,6 @@ package com.group02.mobileshopsystem.api.Controller;
 import com.group02.mobileshopsystem.api.Payload.Request.AuthenticationRequest;
 import com.group02.mobileshopsystem.api.Payload.Request.RegisterRequest;
 import com.group02.mobileshopsystem.api.Payload.Response.AuthenticationResponse;
-import com.group02.mobileshopsystem.api.Repository.TokenRepository;
 import com.group02.mobileshopsystem.api.Services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class AuthenticationController {
   private final AuthenticationService authenticationService;
 
   @PostMapping("/register")
-  public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+  public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
     return ResponseEntity.ok(authenticationService.register(request));
   }
   @PostMapping("/authenticate")

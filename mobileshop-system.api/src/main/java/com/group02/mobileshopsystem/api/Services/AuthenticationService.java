@@ -14,6 +14,7 @@ import com.group02.mobileshopsystem.api.Token.TokenType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +30,13 @@ public class AuthenticationService {
   private final JwtService jwtService;
   private final AuthenticationManager authenticationManager;
   private final EmailValidator emailValidator;
-
   private final EmailSender emailSender;
+  public String register(RegisterRequest request) {
+    boolean userExists = userRepository.existsByEmail(request.getEmail());
 
-
-  public AuthenticationResponse register(RegisterRequest request) {
+    if (userRepository.existsByEmail(request.getEmail())) {
+      throw new RuntimeException("User already exists.");
+    }
     var user = User.builder()
         .firstname(request.getFirstname())
         .lastname(request.getLastname())
@@ -49,7 +52,6 @@ public class AuthenticationService {
     if (!isValidEmail) {
       throw new IllegalStateException("Email is not valid");
     }
-
     var savedUser = userRepository.save(user);
     var jwtToken = jwtService.generateToken(user);
     saveUserToken(savedUser, jwtToken);
@@ -57,11 +59,8 @@ public class AuthenticationService {
     emailSender.send(
             request.getEmail(),
             buildEmail(request.getFirstname(), link));
-    return AuthenticationResponse.builder()
-        .token(jwtToken)
-        .build();
+    return "Verify your Email";
   }
-
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
@@ -70,7 +69,10 @@ public class AuthenticationService {
         )
     );
     var user = userRepository.findByEmail(request.getEmail())
-        .orElseThrow();
+            .orElseThrow(()-> new UsernameNotFoundException("User Doesn't Exist"));
+    if (user.isVerified()==false){
+      throw new RuntimeException("Please verify your email to log in");
+    }
     var jwtToken = jwtService.generateToken(user);
     revokeAllUserTokens(user);
     saveUserToken(user, jwtToken);
@@ -78,7 +80,6 @@ public class AuthenticationService {
         .token(jwtToken)
         .build();
   }
-
   private void saveUserToken(User user, String jwtToken) {
     var token = Token.builder()
         .user(user)
@@ -89,7 +90,6 @@ public class AuthenticationService {
         .build();
     tokenRepository.save(token);
   }
-
   private void revokeAllUserTokens(User user) {
     var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
     if (validUserTokens.isEmpty())
@@ -100,6 +100,7 @@ public class AuthenticationService {
     });
     tokenRepository.saveAll(validUserTokens);
   }
+
   @Transactional
   public String confirmToken(String token) {
     Token confirmationToken = tokenRepository
@@ -120,7 +121,8 @@ public class AuthenticationService {
     tokenRepository.updateConfirmedAt(token,LocalDateTime.now());
     userRepository.verifyUser(
             confirmationToken.getUser().getEmail());
-    return "Verified";
+    return "Your email has been verified. You can now log in.";
+
   }
 
   private String buildEmail(String name, String link) {
