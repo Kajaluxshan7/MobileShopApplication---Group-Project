@@ -31,6 +31,10 @@ public class AddToCartController {
 			int qty =  Integer.parseInt(addCartRequest.get("quantity"));
 			double price = Double.parseDouble(addCartRequest.get("price"));
 			List<AddtoCart> obj = cartService.addToCartByUserIdAndProductId(productId,userId,qty,price);
+			if(obj==null){
+				String msg="Item not in stock. Please reduce the quantity";
+				return ResponseEntity.ok(msg);
+			}
 			return ResponseEntity.ok(obj);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -23,10 +23,10 @@ public class UserService implements UserDetailsService {
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
-    public Optional<User> findByUserId(Integer id) {
+    public Optional<User> findByUserId(int id) {
         return userRepository.findById(id);
     }
-    public void deleteUserById(Integer id) {
+    public void deleteUserById(int id) {
         userRepository.deleteById(id);
     }
 

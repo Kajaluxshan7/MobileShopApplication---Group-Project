@@ -10,6 +10,15 @@ public class ProductBrand {
 	private Long id;
 	@Column(nullable = false, unique = true)
 	private String brandName;
+
+	public ProductBrand() {
+	}
+
+	public ProductBrand(Long id, String brandName) {
+		this.id = id;
+		this.brandName = brandName;
+	}
+
 	public Long getId() {
 		return id;
 	}

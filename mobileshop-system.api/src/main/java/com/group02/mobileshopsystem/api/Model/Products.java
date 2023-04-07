@@ -18,6 +18,10 @@ public class Products {
 	private ProductBrand brand;
 	@Column(nullable = false)
 	private String image_url;
+
+	@Column(nullable = false)
+	private int quantity;
+	@Column(nullable = false)
 	private boolean inStock;
 
 	public ProductBrand getBrand() {
@@ -57,6 +61,19 @@ public class Products {
 	public void setImage_url(String image_url) {
 		this.image_url = image_url;
 	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public boolean isInStock() {
+		return inStock;
+	}
+
 	public Double getPrice() {
 		return price;
 	}
