@@ -12,15 +12,15 @@ import java.util.Optional;
 @Repository
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Integer> {
-
   Optional<User> findByEmail(String email);
+  boolean existsByEmail(String email);
+  Optional<User> findByLink(String verificationToken);
 
   @Transactional
   @Modifying
   @Query("UPDATE User a " +
           "SET a.verified = TRUE WHERE a.email = ?1")
   int verifyUser(String email);
-
   @Query("SELECT verified FROM User WHERE email = ?1")
   boolean isVerifiedUser(String email);
 }
