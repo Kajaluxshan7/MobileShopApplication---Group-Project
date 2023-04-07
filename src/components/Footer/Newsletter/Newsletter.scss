@@ -4,7 +4,7 @@
     height: 400px;
     display: flex;
     align-items: center;
-    background: #f9f9f9 url("../../../assets/neon5.jpg");
+    background: #f9f9f9 url("../../../assets/newsletter-bg.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,15 +18,14 @@
         .text {
             margin-bottom: 20px;
             font-size: 14px;
-            color: rgb(255, 255, 255);
+            color: rgba(0, 0, 0, 0.5);
         }
         .small-text {
             margin-bottom: 15px;
             text-transform: uppercase;
-            color: rgb(255, 255, 255);
+            color: rgba(0, 0, 0, 0.5);
         }
         .big-text {
-            color: white;
             margin-bottom: 20px;
             font-size: 22px;
             line-height: 30px;

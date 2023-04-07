@@ -2,61 +2,60 @@ import React from "react";
 import "./Footer.scss";
 import { FaLocationArrow, FaMobileAlt, FaEnvelope } from "react-icons/fa";
 import Payment from "../../assets/payments.png";
+import { useNavigate } from "react-router-dom";
+
 const Footer = () => {
+    const navigate = useNavigate();
     return (
         <div className="footer">
             <div className="footer-content">
                 <div className="col">
                     <div className="title">About</div>
                     <div className="text">
-                        Voluptatem accusantium doloremque laudantium, totam rem
-                        aperiam, eaque ipsa quae ab illo inventore veritatis et
-                        quasi architecto beatae vitae dicta sunt explicabo eaque
-                        ipsa quae ab illo.
+                        Place to buy your next smartphone for the 
+                        lowest price in Srilanka.
                     </div>
                 </div>
                 <div className="col">
                     <div className="title">Contact</div>
                     <div className="c-item">
-                        <FaLocationArrow />
+                        <FaLocationArrow className="arrowIcon" />
                         <div className="text">
-                            Kayaloram Rd, Punnamada, Kottankulangara, Alappuzha,
-                            Kerala, 688006
+                        Lucky Plaza,
+                        70/06,
+                        Ground Floor,
+                        Colombo 03.
                         </div>
                     </div>
                     <div className="c-item">
-                        <FaMobileAlt />
-                        <div className="text">Phone: 0471 272 0261</div>
+                        <FaMobileAlt className="MobileAlt" />
+                        <div className="text">Phone: 071 91 33 821</div>
                     </div>
                     <div className="c-item">
-                        <FaEnvelope />
-                        <div className="text">Email: store@jsdev.com</div>
+                        <FaEnvelope className="Envelope"/>
+                        <div className="text">Email: rukvap222@gmail.com</div>
                     </div>
                 </div>
                 <div className="col">
                     <div className="title">Categories</div>
-                    <span className="text">Headphones</span>
-                    <span className="text">Smart Watches</span>
-                    <span className="text">Bluetooth Speakers</span>
-                    <span className="text">Wireless Earbuds</span>
-                    <span className="text">Home Theatre</span>
-                    <span className="text">Projectors</span>
+                    <span className="text" onClick={() => navigate(`/category/${"3"}`)}>APPLE</span>
+                    <span className="text" onClick={() => navigate(`/category/${"1"}`)}>SAMSUNG</span>
+                    <span className="text" onClick={() => navigate(`/category/${"2"}`)}>PIXEL BY GOOGLE</span>
+                    <span className="text" onClick={() => navigate(`/category/${"4"}`)}>SONY</span>
+                    
                 </div>
                 <div className="col">
-                    <div className="title">Pages</div>
-                    <span className="text">Home</span>
-                    <span className="text">About</span>
-                    <span className="text">Privacy Policy</span>
-                    <span className="text">Returns</span>
-                    <span className="text">Terms & Conditions</span>
-                    <span className="text">Contact Us</span>
+                    <div className="title"  >Pages</div>
+                    <span className="text" onClick={() => navigate("/")}>Home</span>
+                    <span className="text" onClick={() => navigate("/about")}>About</span>
+                    
                 </div>
             </div>
             <div className="bottom-bar">
                 <div className="bottom-bar-content">
                     <span className="text">
-                        JSDEVSTORE 2022 CREATED BY JS DEV. PREMIUM E-COMMERCE
-                        SOLUTIONS.
+                       Phonez e- commerce store created by
+                       Group 2.
                     </span>
                     <img src={Payment} />
                 </div>

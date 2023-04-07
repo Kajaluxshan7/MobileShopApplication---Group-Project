@@ -19,5 +19,3 @@ const Products = ({ products, innerPage, headingText }) => {
 };
 
 export default Products;
-
-          

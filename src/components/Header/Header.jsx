@@ -36,14 +36,15 @@ const Header = () => {
                     <ul className="left">
                         <li onClick={() => navigate("/")}>Home</li>
                         <li onClick={() => navigate("/about")}>About</li>
-                        <li>Categories</li>
+                        <li>Login</li>
+                        
                     </ul>
                     <div className="center" onClick={() => navigate("/")}>
                         Phonez
                     </div>
                     <div className="right">
                         <TbSearch onClick={() => setSearchModal(true)} />
-                        <AiOutlineHeart />
+                        
                         <span
                             className="cart-icon"
                             onClick={() => setShowCart(true)}
