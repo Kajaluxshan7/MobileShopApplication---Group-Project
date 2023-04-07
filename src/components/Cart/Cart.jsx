@@ -5,10 +5,12 @@ import { Context } from "../../utils/context";
 import CartItem from "./CartItem/CartItem";
 import { loadStripe } from "@stripe/stripe-js";
 import { makePaymentRequest } from "../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 import "./Cart.scss";
 
 const Cart = () => {
+    const navigate = useNavigate();
     const { cartItems, setShowCart, cartSubTotal } = useContext(Context);
 
     const stripePromise = loadStripe(
@@ -18,7 +20,7 @@ const Cart = () => {
     const handlePayment = async () => {
         try {
             const stripe = await stripePromise;
-            const res = await makePaymentRequest.post("/api/orders", {
+            const res = await makePaymentRequest.post("/api/order", {
                 products: cartItems,
             });
             await stripe.redirectToCheckout({
@@ -51,7 +53,7 @@ const Cart = () => {
                     <div className="empty-cart">
                         <BsCartX />
                         <span>No products in the cart.</span>
-                        <button className="return-cta" onClick={() => {}}>
+                        <button className="return-cta" onClick={() => navigate("/")}>
                             RETURN TO SHOP
                         </button>
                     </div>
@@ -64,7 +66,7 @@ const Cart = () => {
                             <div className="subtotal">
                                 <span className="text">Subtotal:</span>
                                 <span className="text total">
-                                    &#8377;{cartSubTotal}
+                                    Rs.{cartSubTotal}
                                 </span>
                             </div>
                             <div className="button">

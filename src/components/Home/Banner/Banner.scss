@@ -22,15 +22,16 @@
         .banner-img {
             position: relative;
             z-index: 9;
-            max-width: 100%;
-            height: auto;
+            width: 200px;
+            height: 120%;
             margin-bottom: 20px;
             
             @include md {
                 width: 500px;
                 margin-right: 60px;
-                margin-top: 5px;
+                margin-top: 0px;
                 margin-bottom: 0;
+                height: 650px;
             }
             @include xxl {
                 width: 600px;
@@ -38,6 +39,15 @@
                 margin-top: 0;
             }
         }
+        .text-content.para2{
+            color: blue;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
         .text-content {
             color: white;
             text-align: center;
@@ -65,12 +75,12 @@
             }
             p {
                 max-width: 300px;
-                font-size: 14px;
+                font-size: 30px;
                 line-height: 20px;
                 margin-bottom: 20px;
                 @include md {
-                    max-width: 500px;
-                    font-size: 18px;
+                    max-width: 800px;
+                    font-size: 35px;
                     line-height: 24px;
                     margin-bottom: 40px;
                 }

@@ -11,7 +11,6 @@ const Category = () => {
         <div className="category-main-content">
             <div className="layout">
                 <div className="category-title">
-                    category title
                     {
                         data?.data?.[0]?.attributes?.categories?.data?.[0]
                             ?.attributes?.title

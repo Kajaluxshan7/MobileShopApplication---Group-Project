@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Context } from "../../utils/context";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import {
     FaFacebookF,
@@ -39,15 +40,15 @@ const SingleProduct = () => {
                     <div className="left">
                         <img
                             src={
-                                process.env.REACT_APP_DEV_URL +
-                                product.img.data[0].attributes.url
+                                process.env.REACT_APP_STRIPE_APP_DEV_URL +
+                                product.image.data[0].attributes.url
                             }
                         />
                     </div>
                     <div className="right">
                         <span className="name">{product.title}</span>
-                        <span className="price">&#8377;{product.price}</span>
-                        <span className="desc">{product.description}</span>
+                        <span className="price">Rs.{product.price}</span>
+                        <span className="desc">{product.desc}</span>
 
                         <div className="cart-buttons">
                             <div className="quantity-buttons">
@@ -81,7 +82,7 @@ const SingleProduct = () => {
                             <span className="text-bold">
                                 Share:
                                 <span className="social-icons">
-                                    <FaFacebookF size={16} />
+                                    <FaFacebookF size={16} />    
                                     <FaTwitter size={16} />
                                     <FaInstagram size={16} />
                                     <FaLinkedinIn size={16} />
