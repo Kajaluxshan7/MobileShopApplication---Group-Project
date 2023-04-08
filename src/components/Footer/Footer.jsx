@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer">
             <div className="footer-content">
                 <div className="col">
-                    <div className="title">About</div>
+                    <div className="title">Phonez</div>
                     <div className="text">
                         Place to buy your next smartphone for the 
                         lowest price in Srilanka.
@@ -54,7 +54,7 @@ const Footer = () => {
             <div className="bottom-bar">
                 <div className="bottom-bar-content">
                     <span className="text">
-                       Phonez e- commerce store created by
+                       Phonez E-commerce store created by
                        Group 2.
                     </span>
                     <img src={Payment} />

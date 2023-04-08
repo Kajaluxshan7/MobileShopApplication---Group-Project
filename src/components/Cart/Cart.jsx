@@ -71,8 +71,7 @@ const Cart = () => {
                             </div>
                             <div className="button">
                                 <button
-                                    className="checkout-cta"
-                                    onClick={handlePayment}
+                                    className="checkout-cta" onClick={() => navigate("/")}
                                 >
                                     Checkout
                                 </button>
