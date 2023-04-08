@@ -20,7 +20,7 @@ import java.util.Random;
 public class OrderController {
 	@Autowired
 	CartService cartService;
-	@RequestMapping("checkout_order")
+	@RequestMapping("/checkout_order")
   	public ResponseEntity<?> checkout_order(@RequestBody HashMap<String,String> addCartRequest) {
 		try {
 			String keys[] = {"userId","total_price","pay_type","deliveryAddress"};

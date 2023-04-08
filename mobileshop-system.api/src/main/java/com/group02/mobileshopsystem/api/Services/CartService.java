@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface CartService {
-	List<AddtoCart> addToCartByUserIdAndProductId(long productId, long userId, int qty, double price) throws Exception;
-	void updateQuantityByCartId(long cartId, int qty, double price) throws Exception;
+	List<AddtoCart> addToCartByUserIdAndProductId(long productId, long userId, int quantity, double price) throws Exception;
+	void updateQuantityByCartId(long cartId, int quantity, double price) throws Exception;
 	List<AddtoCart> getCartByUserId(long userId);
 	List<AddtoCart> removeCartByUserId(long cartId,long userId);
 	List<AddtoCart> removeAllCartByUserId(long userId);
