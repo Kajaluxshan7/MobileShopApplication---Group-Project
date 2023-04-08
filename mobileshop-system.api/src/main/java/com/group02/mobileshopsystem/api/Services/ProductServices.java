@@ -47,6 +47,7 @@ public class ProductServices {
 			existingProduct.setName(product.getName());
 			existingProduct.setDescription(product.getDescription());
 			existingProduct.setPrice(product.getPrice());
+			existingProduct.setQuantity(product.getQuantity());
 
 			ProductBrand brand = brandRepository.findById(brandId).orElse(null);
 			if (brand != null) {
