@@ -1,46 +1,67 @@
 import React from "react";
-import "./footer.css";
-import logo1 from "./logo.jpg";
-import { Link } from "react-router-dom";
+import "./Footer.scss";
+import { FaLocationArrow, FaMobileAlt, FaEnvelope } from "react-icons/fa";
+import Payment from "../../assets/payments.png";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
-  return (
-    <>
-      <footer>
-        <div className='containerGrid2'>
-            
-          <div className='box'>
-          <div className="image">
-            <img src={logo1} alt="" />
+    const navigate = useNavigate();
+    return (
+        <div className="footer">
+            <div className="footer-content">
+                <div className="col">
+                    <div className="title">About</div>
+                    <div className="text">
+                        Place to buy your next smartphone for the 
+                        lowest price in Srilanka.
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="title">Contact</div>
+                    <div className="c-item">
+                        <FaLocationArrow className="arrowIcon" />
+                        <div className="text">
+                        Lucky Plaza,
+                        70/06,
+                        Ground Floor,
+                        Colombo 03.
+                        </div>
+                    </div>
+                    <div className="c-item">
+                        <FaMobileAlt className="MobileAlt" />
+                        <div className="text">Phone: 071 91 33 821</div>
+                    </div>
+                    <div className="c-item">
+                        <FaEnvelope className="Envelope"/>
+                        <div className="text">Email: rukvap222@gmail.com</div>
+                    </div>
+                </div>
+                <div className="col">
+                    <div className="title">Categories</div>
+                    <span className="text" onClick={() => navigate(`/category/${"3"}`)}>APPLE</span>
+                    <span className="text" onClick={() => navigate(`/category/${"1"}`)}>SAMSUNG</span>
+                    <span className="text" onClick={() => navigate(`/category/${"2"}`)}>PIXEL BY GOOGLE</span>
+                    <span className="text" onClick={() => navigate(`/category/${"4"}`)}>SONY</span>
+                    
+                </div>
+                <div className="col">
+                    <div className="title"  >Pages</div>
+                    <span className="text" onClick={() => navigate("/")}>Home</span>
+                    <span className="text" onClick={() => navigate("/about")}>About</span>
+                    
+                </div>
             </div>
-          
-        
-            <div className='icon d_flex'>
-            
-             
+            <div className="bottom-bar">
+                <div className="bottom-bar-content">
+                    <span className="text">
+                       Phonez e- commerce store created by
+                       Group 2.
+                    </span>
+                    <img src={Payment} />
+                </div>
             </div>
-          </div>
-
-          <div className='box12'>
-            <h2>About Us</h2>
-            <ul>
-                <li> <Link>About Phonez</Link> </li>
-                <li> <Link>Terms & Conditions</Link> </li>
-                <li> <Link>Privacy Policy</Link> </li>
-            </ul>
-          </div>
-          <div className='box'>
-            <h2>Contact Us</h2>
-            <ul>
-              <li>70 Washington Square South, New York, NY 10012, United States </li>
-              <li>Email: uilib.help@gmail.com</li>
-              <li>Phone: +1 1123 456 780</li>
-            </ul>
-          </div>
         </div>
-      </footer>
-    </>
-  )
-}
+    );
+};
 
-export default Footer
+export default Footer;
