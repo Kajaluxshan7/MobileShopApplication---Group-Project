@@ -56,8 +56,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void updateQuantityByCartId(long cartId, int qty, double price) throws Exception {
-		addToCartRepository.updateQuantityByCartId(cartId,price,qty);
+	public void updateQuantityByCartId(long cartId, int quantity, double price) throws Exception {
+		addToCartRepository.updateQuantityByCartId(cartId,price, quantity);
 	}
 
 	@Override

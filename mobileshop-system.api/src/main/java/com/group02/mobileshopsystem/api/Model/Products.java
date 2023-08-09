@@ -18,7 +18,6 @@ public class Products {
 	private ProductBrand brand;
 	@Column(nullable = false)
 	private String image_url;
-
 	@Column(nullable = false)
 	private int quantity;
 	@Column(nullable = false)

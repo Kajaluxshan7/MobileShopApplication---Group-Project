@@ -28,11 +28,11 @@ public class AddToCartController {
 			}
 			long productId = Long.parseLong(addCartRequest.get("productId")); 
 			long userId =  Long.parseLong(addCartRequest.get("userId")); 
-			int qty =  Integer.parseInt(addCartRequest.get("quantity"));
+			int quantity =  Integer.parseInt(addCartRequest.get("quantity"));
 			double price = Double.parseDouble(addCartRequest.get("price"));
-			List<AddtoCart> obj = cartService.addToCartByUserIdAndProductId(productId,userId,qty,price);
+			List<AddtoCart> obj = cartService.addToCartByUserIdAndProductId(productId,userId,quantity,price);
 			if(obj==null){
-				String msg="Item not in stock. Please reduce the quantity";
+				String msg="Sorry, the requested quantity of the item is not available at the moment. Please choose a lower quantity, We apologize for any inconvenience this may have caused.";
 				return ResponseEntity.ok(msg);
 			}
 			return ResponseEntity.ok(obj);
@@ -52,9 +52,9 @@ public class AddToCartController {
 			}
 			long cartId = Long.parseLong(addCartRequest.get("cartId")); 
 			long userId =  Long.parseLong(addCartRequest.get("userId")); 
-			int qty =  Integer.parseInt(addCartRequest.get("quantity"));
+			int quantity =  Integer.parseInt(addCartRequest.get("quantity"));
 			double price = Double.parseDouble(addCartRequest.get("price"));
-			 cartService.updateQuantityByCartId(cartId, qty, price);
+			 cartService.updateQuantityByCartId(cartId, quantity, price);
 			 List<AddtoCart> obj = cartService.getCartByUserId(userId);
 			return ResponseEntity.ok(obj);
 		} catch (Exception e) {
@@ -65,7 +65,7 @@ public class AddToCartController {
    }
 	
 	
-	@RequestMapping("removeProductFromCart")
+	@RequestMapping("/removeProductFromCart")
   	public ResponseEntity<?> removeProductIdFromCart(@RequestBody HashMap<String,String> removeCartRequest) {
 		try {
 			String keys[] = {"userId","cartId"};
@@ -79,7 +79,7 @@ public class AddToCartController {
 		}		
    }
 	
-	@RequestMapping("getCartsByUserId")
+	@RequestMapping("/getCartsByUserId")
   	public ResponseEntity<?> getCartsByUserId(@RequestBody HashMap<String,String> getCartRequest) {
 		try {
 			String keys[] = {"userId"};

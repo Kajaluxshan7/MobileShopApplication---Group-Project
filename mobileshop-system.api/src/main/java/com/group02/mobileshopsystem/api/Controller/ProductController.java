@@ -3,14 +3,10 @@ package com.group02.mobileshopsystem.api.Controller;
 import com.group02.mobileshopsystem.api.Model.ProductBrand;
 import com.group02.mobileshopsystem.api.Model.Products;
 import com.group02.mobileshopsystem.api.Services.BrandService;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,11 +18,11 @@ public class ProductController {
 	com.group02.mobileshopsystem.api.Services.ProductServices productServices;
 	@Autowired
 	BrandService brandService;
-	@RequestMapping("getAll")
+	@RequestMapping("/getAll")
 	public List<Products> getAllProducts(){
 		return productServices.getAllProducts();
 	}
-	@RequestMapping("getAllBrands")
+	@RequestMapping("/getAllBrands")
 	public List<ProductBrand> getAllBrands(){
 		return productServices.getAllBrands();
 	}
