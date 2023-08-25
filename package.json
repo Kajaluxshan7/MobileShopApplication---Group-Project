@@ -1,10 +1,8 @@
 {
   "name": "api",
   "private": true,
-<<<<<<< HEAD
   "version": "0.1.0",
   "description": "A Strapi application",
-=======
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -22,21 +20,18 @@
     "react-router-dom": "^6.4.5",
     "react-scripts": "5.0.1",
     "sass": "^1.56.2",
-    "web-vitals": "^2.1.4"
-  },
->>>>>>> b1b7c059c06d09802f2ec9be77697da26fa053ec
-  "scripts": {
-    "develop": "strapi develop",
-    "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi"
-  },
-  "dependencies": {
+    "web-vitals": "^2.1.4",
     "@strapi/plugin-i18n": "4.9.0",
     "@strapi/plugin-users-permissions": "4.9.0",
     "@strapi/strapi": "4.9.0",
     "better-sqlite3": "8.0.1",
     "stripe": "^11.17.0"
+  },
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
   },
   "author": {
     "name": "A Strapi developer"
