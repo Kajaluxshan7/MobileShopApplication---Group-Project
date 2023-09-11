@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DatabaseToolSources">
+    <data-source name="localhost" uuid="baa3a1d6-f549-4941-862a-5f157ea34fad" type="MYSQL">
+      <base-info connect-type="DB_DEFAULT" product="MySQL" version="8.0.29" jdbc-name="MySQL Connector Java" jdbc-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" />
+      <user-name>root</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="mobileretailshop" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+      <url>jdbc:mysql://localhost:3306/mobileretailshop?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo?useSSL=false&amp;serverTimezone=Asia/Colombo</url>
+      <remarks />
+      <driver-info id="mysql5" />
+      <ssh-properties enabled="false" />
+      <ssl-config enabled="false">
+        <uuid />
+        <caFile />
+        <clientCertificateFile />
+        <clientKeyFile />
+        <sslMode>REQUIRE</sslMode>
+      </ssl-config>
+    </data-source>
+  </component>
+</project>
