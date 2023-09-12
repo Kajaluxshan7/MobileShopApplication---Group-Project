@@ -11,16 +11,8 @@ const Category = ({ categories }) => {
                         key={item.id}
                         className="category"
                         onClick={() => navigate(`/category/${item.id}`)}
-
-                        
-                        
-                    >
-                        <img
-                            src={
-                                process.env.REACT_APP_STRIPE_APP_DEV_URL +
-                                item.attributes.img.data.attributes.url
-                            }
-                        />
+                        >
+                       
                     </div>
                 ))}
             </div>

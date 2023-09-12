@@ -9,7 +9,7 @@ import SingleProduct from "./components/SingleProduct/SingleProduct";
 import Newsletter from "./components/Footer/Newsletter/Newsletter";
 import AppContext from "./utils/context";
 import Product from "./components/Products/Product/Product";
-
+import Signup from "./auth/signup";
 function App() {
     return (
         <BrowserRouter>
@@ -20,6 +20,7 @@ function App() {
                     <Route path="/category/:id" element={<Category />} />
                     <Route path="/product/:id" element={<SingleProduct />} />
                     <Route path="/product" element={<Product />} />
+                    <Route path="/signup" element={<Signup />} />
                 </Routes>
                 <Newsletter />
                 <Footer />
